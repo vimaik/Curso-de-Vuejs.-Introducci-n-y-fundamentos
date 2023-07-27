@@ -12,10 +12,13 @@
         const vm = Vue.createApp({
             data() {
                 return {
-                    texto: "<p>Hola Vue</p>"
+                    img: "./images/image-001.jpg",
+                    // img: "./images/image-003.jpg",
+                    alt: "Imagen 001"
+                    // alt: "Imagen 002"
                 };
             },
-            template: `<div v-once v-html="texto"></div>`
+            template: `<img v-bind:src="img" v-bind:alt="alt" />`
         }).mount("#app");
     </script>
 </body>
