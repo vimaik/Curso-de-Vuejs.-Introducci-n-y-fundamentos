@@ -12,14 +12,18 @@
         const vm = Vue.createApp({
             data() {
                 return {
-                    atributo: "alt",
-                    img: "./images/image-001.jpg",
-                    // img: "./images/image-003.jpg",
-                    alt: "Imagen 001"
-                    // alt: "Imagen 002"
+                    contador: 0
                 };
             },
-            template: `<img v-bind:[atributo]="img" />`
+            methods: {
+                incrementar(i) { return this.contador++ },
+                decrementar(i)  { return this.contador-- }
+            },
+            template: `<div style="flex: 1; display:flex; justify-content: center; align-items: center;"><h1>{{ contador }}<h1></div>
+                <div style="flex: 1; display: flex; justify-content: center;">
+                    <button style="flex: 1; margin-right: 0.25em; padding: 0.5em;" v-on:click="incrementar">Añade 1</button>
+                    <button style="flex: 1; margin-left: 0.25em; padding: 0.5em;" v-on:click="decrementar">Resta 1</button>
+                </div>`
         }).mount("#app");
     </script>
 </body>
