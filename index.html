@@ -15,17 +15,11 @@
                     texto: "Hola Vue"
                 };
             },
-            methods: {
-                updateText(evento) {
-                    this.texto = evento.target.value;
-                }
-            },
             template: `
                 <p>{{ texto }}</p>
                 <input
                     type="text"
-                    :value="texto"
-                    @input="updateText"
+                    v-model="texto"
                 />
 
             `
