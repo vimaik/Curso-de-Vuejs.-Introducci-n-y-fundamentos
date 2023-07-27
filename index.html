@@ -12,13 +12,14 @@
         const vm = Vue.createApp({
             data() {
                 return {
+                    atributo: "alt",
                     img: "./images/image-001.jpg",
                     // img: "./images/image-003.jpg",
                     alt: "Imagen 001"
                     // alt: "Imagen 002"
                 };
             },
-            template: `<img v-bind:src="img" v-bind:alt="alt" />`
+            template: `<img v-bind:[atributo]="img" />`
         }).mount("#app");
     </script>
 </body>
