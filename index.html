@@ -7,14 +7,15 @@
 </head>
 <body>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <div id="app">{{ texto }}</div>
+    <div id="app"></div>
     <script>
         const vm = Vue.createApp({
             data() {
                 return {
                     texto: "Hola Vue"
                 };
-            }
+            },
+            template: `<div>{{ texto }}</div>`
         }).mount("#app");
     </script>
 </body>
