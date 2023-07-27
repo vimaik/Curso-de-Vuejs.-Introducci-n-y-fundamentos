@@ -12,18 +12,18 @@
         const vm = Vue.createApp({
             data() {
                 return {
-                    contador: 0
+                    texto: "Hola Vue"
                 };
             },
             methods: {
-                incrementar(i) { return this.contador++ },
-                decrementar(i)  { return this.contador-- }
+                updateText(evento) {
+                    this.texto = evento.target.value;
+                }
             },
-            template: `<div style="flex: 1; display:flex; justify-content: center; align-items: center;"><h1>{{ contador }}<h1></div>
-                <div style="flex: 1; display: flex; justify-content: center;">
-                    <button style="flex: 1; margin-right: 0.25em; padding: 0.5em;" v-on:click="incrementar">Añade 1</button>
-                    <button style="flex: 1; margin-left: 0.25em; padding: 0.5em;" v-on:click="decrementar">Resta 1</button>
-                </div>`
+            template: `
+                <p>{{ texto }}</p>
+                <input v-on:change="updateText" type="text "value="" />
+            `
         }).mount("#app");
     </script>
 </body>
