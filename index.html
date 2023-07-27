@@ -22,7 +22,7 @@
             },
             template: `
                 <p>{{ texto }}</p>
-                <input v-on:change="updateText" type="text "value="" />
+                <input v-on:input="updateText" type="text "value="" />
             `
         }).mount("#app");
     </script>
