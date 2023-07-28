@@ -13,15 +13,21 @@
             data() {
                 return {
                     doorState: "Puerta cerrada",
-                    isDoorOpened: false
+                    isDoorOpened: false,
+                    styles: {
+                        backgroundColor: "#eca1a6"
+                    }
                 };
             },
             watch: {
                 isDoorOpened(newValue) {
-                    newValue
-                        ? this.doorState = "Puerta abierta"
-                        : this.doorState = "Puerta cerrada"
-                    ;
+                    if(newValue) {
+                        this.doorState = "Puerta abierta";
+                        this.styles.backgroundColor = "#b5e7a0";
+                    } else {
+                        this.doorState = "Puerta cerrada";
+                        this.styles.backgroundColor = "#eca1a6";
+                    }
                 }
             },
             computed: {
@@ -30,7 +36,7 @@
                 }
             },
             template: `
-                <div class="container">
+                <div class="container" :style="styles">
                     <h2>{{ doorState }}</h2>
                     <button @click="isDoorOpened = !isDoorOpened">{{ buttonLabel }}</button>
                 </div>
