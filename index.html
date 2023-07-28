@@ -12,23 +12,19 @@
         const vm = Vue.createApp({
             data() {
                 return {
-                    firstName: "Víctor",
-                    lastName: "Muñoz",
-                    now: new Date()
+                    texto: "Primer texto",
+                    textoFueraDelWatcher: "Este texto esta fuera del watcher, pero se puede acceder a él usando 'this.' ;D"
                 };
             },
-            computed: {
-                fullName() {
-                    return this.firstName + " " + this.lastName;
-                },
-                todaysLocaleDate() {
-                    return this.now.toLocaleDateString();
+            watch: {
+                texto(newValue, oldValue) {
+                    console.log("Watcher 'texto' activado!");
+                    console.log("Nuevo valor: " + " " + newValue);
+                    console.log("Valor anterior: " + " " + oldValue);
+                    console.log("textoFueraDelWatcher: " + " " + this.textoFueraDelWatcher);
                 }
             },
-            template: `
-                <div>{{ fullName }}</div>
-                <div>{{ todaysLocaleDate }}</div>
-            `
+            template: `{{ texto }}`
         }).mount("#app");
     </script>
 </body>
