@@ -28,10 +28,13 @@
             computed: {
                 buttonLabel() {
                     return this.isDoorOpened ? "Cerrar puerta" : "Abrir puerta";
-                }
+                },
+                styles() {
+                    return this.isDoorOpened ? ['opened'] : ['closed'];
+                },
             },
             template: `
-                <div class="container" :class="{ 'opened': isDoorOpened, 'closed': !isDoorOpened }">
+                <div class="container" :class="styles">
                     <h2>{{ doorState }}</h2>
                     <button @click="isDoorOpened = !isDoorOpened">{{ buttonLabel }}</button>
                 </div>
