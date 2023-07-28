@@ -12,19 +12,22 @@
         const vm = Vue.createApp({
             data() {
                 return {
-                    texto: "Primer texto",
-                    textoFueraDelWatcher: "Este texto esta fuera del watcher, pero se puede acceder a él usando 'this.' ;D"
+                    doorState: "Puerta cerrada",
+                    isDoorOpened: false
                 };
             },
             watch: {
-                texto(newValue, oldValue) {
-                    console.log("Watcher 'texto' activado!");
-                    console.log("Nuevo valor: " + " " + newValue);
-                    console.log("Valor anterior: " + " " + oldValue);
-                    console.log("textoFueraDelWatcher: " + " " + this.textoFueraDelWatcher);
+                isDoorOpened(newValue) {
+                    return newValue
+                        ? this.doorState = "Puerta abierta"
+                        : this.doorState = "Puerta cerrada"
+                    ;
                 }
             },
-            template: `{{ texto }}`
+            template: `
+                <div>{{ doorState }}</div>
+                <button @click="isDoorOpened = !isDoorOpened">{{ isDoorOpened ? "Cerrar puerta" : "Abrir puerta" }}</button>
+            `
         }).mount("#app");
     </script>
 </body>
