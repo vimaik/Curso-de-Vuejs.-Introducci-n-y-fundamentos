@@ -18,15 +18,20 @@
             },
             watch: {
                 isDoorOpened(newValue) {
-                    return newValue
+                    newValue
                         ? this.doorState = "Puerta abierta"
                         : this.doorState = "Puerta cerrada"
                     ;
                 }
             },
+            computed: {
+                buttonLabel() {
+                    return this.isDoorOpened ? "Cerrar puerta" : "Abrir puerta";
+                }
+            },
             template: `
                 <div>{{ doorState }}</div>
-                <button @click="isDoorOpened = !isDoorOpened">{{ isDoorOpened ? "Cerrar puerta" : "Abrir puerta" }}</button>
+                <button @click="isDoorOpened = !isDoorOpened">{{ buttonLabel }}</button>
             `
         }).mount("#app");
     </script>
