@@ -12,9 +12,22 @@
         const vm = Vue.createApp({
             data() {
                 return {
-                    title: "Página de autentificación",
+                    title: "Tocats pel foc",
                     userIsLogged: false,
-                    username: ""
+                    username: "",
+                    posts: [{
+                        title: "Título del post 1",
+                        content: "Contenido del post 1"
+                    },{
+                        title: "Título del post 2",
+                        content: "Contenido del post 2"
+                    },{
+                        title: "Título del post 3",
+                        content: "Contenido del post 3"
+                    },{
+                        title: "Título del post 4",
+                        content: "Contenido del post 4"
+                    },]
                 };
             },
             watch: {
@@ -30,13 +43,24 @@
                 },
             },
             template: `
-                <h2>{{ title }}</h2>
+                <h1>{{ title }}</h1>
+                <h2>
+                    <span v-if="userIsLogged">Homepage</span>
+                    <span v-else>Página de autentificación</span>
+                </h2>
                 <div class="container" :class="styles">
-                    <div v-if="userIsLogged">
-                        <p>Hola, {{ username }}<p>
+                    <div v-if="userIsLogged" class="content">
+                        <p class="saludo">Hola, {{ username }}</p>
+                        <h3>Últimos posts</h3>
+                        <div class="posts-wrapper">
+                            <div v-for="(item,i) in posts" :key="i" class="post">
+                                <h4>{{ item.title }}</h4>
+                                <p>{{ item.content }}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div v-else>
-                        <label>Nombre de usuario<label>
+                    <div v-else class="content">
+                        <div class="label">Nombre de usuario</div>
                         <input type="text" v-model="username" />
                     </div>
                     <button @click="userIsLogged = !userIsLogged">
@@ -53,13 +77,35 @@
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
         }
-        h2 {
-            border-bottom: 2px solid black;
+        h1 {
             color: e5e5e5;
             margin: 0 0 0 10px;
             padding: 10px;
             text-align: left;
             width: 100%;
+        }
+        h2 {
+            background-color: darkgray;
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+            color: white;
+            margin: 0;
+            width: 100%;
+            padding: 5px 0;
+        }
+        h2 span {
+            margin-left: 10px;
+        }
+        h3 {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+        h4 {
+            border-bottom: 1px solid black;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 0;
         }
         #app, .container {
             display: flex;
@@ -69,11 +115,39 @@
             width: 100%;
             height: 100%;
         }
-        label {
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 50%;
+        }
+        .label {
             font-weight: bold;
+            margin-bottom: 5px;
         }
         input {
-            margin-left: 10px;
+            margin: 0px;
+        }
+        h3, .posts-wrapper {
+            min-width: 50%;
+        }
+        .posts-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+        .saludo {
+            min-width: 50%;
+        }
+        .post {
+            background-color: #e5e5e5;
+            border: 1px  solid darkgray;
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            padding: 10px 5px 0 5px;
+        }
+        .post h4 {
+            margin-top: 5px;
         }
         button {
             margin-top: 24px;
