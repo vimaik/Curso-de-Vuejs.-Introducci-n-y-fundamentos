@@ -9,7 +9,7 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <div id="app"></div>
     <script>
-        const vm = Vue.createApp({
+        const app = Vue.createApp({
             data() {
                 return {
                     title: "Tocats pel foc",
@@ -69,7 +69,8 @@
                     </button>
                 </div>
             `
-        }).mount("#app");
+        });
+        const vm = app.mount("#app");
     </script>
     <style>
         html, body {
