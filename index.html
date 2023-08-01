@@ -12,18 +12,25 @@
         const app = Vue.createApp({
             template: `
             <div>
-                <v-header>
-                    <button>Título</button>
-                </v-header>
-                <div>Lorem ipsum</div>
+                <v-layout>
+                    <template v-slot:header>
+                        Título 1
+                    </template>
+                    <template v-slot:content>
+                        Párrafo número 1.
+                    </template>
+                </v-layout>
             </div>`
         });
 
-        app.component("v-header", {
+        app.component("v-layout", {
             template: `
             <header>
-                <slot></slot>
+                <slot name="header"></slot>
             </header>
+            <div>
+                <slot name="content"></slot>
+            </div>
             `
         });
 
