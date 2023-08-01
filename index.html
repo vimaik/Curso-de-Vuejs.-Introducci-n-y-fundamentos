@@ -53,10 +53,7 @@
                         <p class="saludo">Hola, {{ username }}</p>
                         <h3>Últimos posts</h3>
                         <div class="posts-wrapper">
-                            <div v-for="(item,i) in posts" :key="i" class="post">
-                                <h4>{{ item.title }}</h4>
-                                <p>{{ item.content }}</p>
-                            </div>
+                            <post v-for="(item, i) in posts" :key="i" :post="item" />
                         </div>
                     </div>
                     <div v-else class="content">
@@ -65,11 +62,22 @@
                     </div>
                     <button @click="userIsLogged = !userIsLogged">
                         <div v-if="!userIsLogged">Iniciar sesión</div>
-                        <div v-else=>Cerrar sesión</div>
+                        <div v-else>Cerrar sesión</div>
                     </button>
                 </div>
             `
         });
+        
+        app.component("post", {
+            props: ["post"],
+            template:`
+            <div class="post">
+                <h4>{{ post.title }}</h4>
+                <p>{{ post.content }}</p>
+            </div>
+            `
+        });
+
         const vm = app.mount("#app");
     </script>
     <style>
