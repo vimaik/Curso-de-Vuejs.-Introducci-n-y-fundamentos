@@ -17,13 +17,15 @@
             },
             template:`
             <ul>
-                <v-li v-for="(item, i) in items" v-bind:text="item"></v-li>
+                <v-li v-for="(item, i) in items" :key="i" :text="item"></v-li>
             </ul>
             `
         });
 
         app.component("v-li", {
-            props: ["text"],
+            props: {
+                text: String
+            },
             template: `<li>{{ text }}</li>`
         });
 
