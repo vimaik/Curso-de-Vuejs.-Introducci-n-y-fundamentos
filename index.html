@@ -3,174 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Curso de Vue.js: Introducción ny fundamentos</title>
 </head>
 <body>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <div id="app"></div>
     <script>
         const app = Vue.createApp({
-            data() {
-                return {
-                    title: "Tocats pel foc",
-                    userIsLogged: false,
-                    username: "",
-                    posts: [{
-                        title: "Título del post 1",
-                        content: "Contenido del post 1"
-                    },{
-                        title: "Título del post 2",
-                        content: "Contenido del post 2"
-                    },{
-                        title: "Título del post 3",
-                        content: "Contenido del post 3"
-                    },{
-                        title: "Título del post 4",
-                        content: "Contenido del post 4"
-                    },]
-                };
-            },
-            watch: {
-                userIsLogged(newValue) {
-                    if(!newValue || newValue == "") {
-                        this.username = "";
-                    }
-                }
-            },
-            computed: {
-                styles() {
-                    return this.userIsLogged ? ['logged'] : ['not-logged'];
-                },
-            },
             template: `
-                <h1>{{ title }}</h1>
-                <h2>
-                    <span v-if="userIsLogged">Homepage</span>
-                    <span v-else>Página de autentificación</span>
-                </h2>
-                <div class="container" :class="styles">
-                    <div v-if="userIsLogged" class="content">
-                        <p class="saludo">Hola, {{ username }}</p>
-                        <h3>Últimos posts</h3>
-                        <div class="posts-wrapper">
-                            <post v-for="(item, i) in posts" :key="i" :post="item" />
-                        </div>
-                    </div>
-                    <div v-else class="content">
-                        <div class="label">Nombre de usuario</div>
-                        <input type="text" v-model="username" />
-                    </div>
-                    <button @click="userIsLogged = !userIsLogged">
-                        <div v-if="!userIsLogged">Iniciar sesión</div>
-                        <div v-else>Cerrar sesión</div>
-                    </button>
-                </div>
-            `
+            <div>
+                <v-header>
+                    <button>Título</button>
+                </v-header>
+                <div>Lorem ipsum</div>
+            </div>`
         });
-        
-        app.component("post", {
-            props: ["post"],
-            template:`
-            <div class="post">
-                <h4>{{ post.title }}</h4>
-                <p>{{ post.content }}</p>
-            </div>
+
+        app.component("v-header", {
+            template: `
+            <header>
+                <slot></slot>
+            </header>
             `
         });
 
+
         const vm = app.mount("#app");
     </script>
-    <style>
-        html, body {
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        h1 {
-            color: e5e5e5;
-            margin: 0 0 0 10px;
-            padding: 10px;
-            text-align: left;
-            width: 100%;
-        }
-        h2 {
-            background-color: darkgray;
-            border-top: 2px solid black;
-            border-bottom: 2px solid black;
-            color: white;
-            margin: 0;
-            width: 100%;
-            padding: 5px 0;
-        }
-        h2 span {
-            margin-left: 10px;
-        }
-        h3 {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 0;
-        }
-        h4 {
-            border-bottom: 1px solid black;
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 0;
-        }
-        #app, .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            width: 100%;
-            height: 100%;
-        }
-        .content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 50%;
-        }
-        .label {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        input {
-            margin: 0px;
-        }
-        h3, .posts-wrapper {
-            min-width: 50%;
-        }
-        .posts-wrapper {
-            display: flex;
-            flex-direction: column;
-        }
-        .saludo {
-            min-width: 50%;
-        }
-        .post {
-            background-color: #e5e5e5;
-            border: 1px  solid darkgray;
-            display: flex;
-            flex-direction: column;
-            margin-top: 10px;
-            padding: 10px 5px 0 5px;
-        }
-        .post h4 {
-            margin-top: 5px;
-        }
-        button {
-            margin-top: 24px;
-            border: none;
-            background-color: white;
-            padding: 8px 24px;
-            border-radius: 12px;
-        }
-        .not-logged {
-            background-color: #eca1a6;
-        }
-        .logged {
-            background-color: #b5e7a0;
-        }
-    </style>
 </body>
 </html>
