@@ -15,17 +15,11 @@
                     text: "Hola Vue"
                 };
             },
-            methods: {
-                updateParagraphText(newText) {
-                    this.text = newText;
-                }
-            },
             template: `
                 <div>
                     <p>{{ text }}</p>
                     <v-input
-                        :value="text"
-                        @updateText="updateParagraphText"
+                        v-model:value="text"
                     />
                 </div>`
         });
@@ -37,7 +31,11 @@
             methods: {
                 updateParentText(event) {
                     console.log(event.target.value);
-                    this.$emit("updateText", event.target.value);
+                    // Con este método es obligatorio, en el $emit,
+                    // poner en el primer parámetro 'update:' y luego
+                    // el nombre de la variable (la 'prop') que
+                    // queremos sincronizar. En este caso: 'value'
+                    this.$emit("update:value", event.target.value);
                 }
             },
             template: `
