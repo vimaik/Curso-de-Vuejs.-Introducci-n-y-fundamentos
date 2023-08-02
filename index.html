@@ -10,40 +10,7 @@
     <div id="app"></div>
     <script>
         const app = Vue.createApp({
-            data() {
-                return {
-                    text: "Hola Vue"
-                };
-            },
-            template: `
-                <div>
-                    <p>{{ text }}</p>
-                    <v-input
-                        v-model:value="text"
-                    />
-                </div>`
-        });
-
-        app.component("v-input", {
-            props: {
-                value: String
-            },
-            methods: {
-                updateParentText(event) {
-                    console.log(event.target.value);
-                    // Con este método es obligatorio, en el $emit,
-                    // poner en el primer parámetro 'update:' y luego
-                    // el nombre de la variable (la 'prop') que
-                    // queremos sincronizar. En este caso: 'value'
-                    this.$emit("update:value", event.target.value);
-                }
-            },
-            template: `
-                <input
-                    type="text"
-                    :value="value"
-                    @input="updateParentText"
-                />`
+            template: ``
         });
         
         const vm = app.mount("#app");
