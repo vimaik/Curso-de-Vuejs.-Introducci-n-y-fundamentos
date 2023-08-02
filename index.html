@@ -15,12 +15,19 @@
                     items: ["Uno", "Dos", "Tres", "Cuatro"]
                 };
             },
+            methods: {
+                remove(itemIndex) {
+                    const newItems = this.items.filter((el, i) => i !== itemIndex);
+                    this.items = newItems;
+                }
+            },
             template:`
             <ul>
                 <v-li
                     v-for="(item, i) in items"
                     :key="i"
                     :text="item"
+                    @click="remove(i)"
                 />
             </ul>
             `
