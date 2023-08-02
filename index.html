@@ -15,10 +15,18 @@
                     text: "Hola Vue"
                 };
             },
+            methods: {
+                updateParagraphText(newText) {
+                    this.text = newText;
+                }
+            },
             template: `
                 <div>
-                    <p @updateText=>{{ text }}</p>
-                    <v-input :value="text" />
+                    <p>{{ text }}</p>
+                    <v-input
+                        :value="text"
+                        @updateText="updateParagraphText"
+                    />
                 </div>`
         });
 
@@ -26,7 +34,18 @@
             props: {
                 value: String
             },
-            template: `<input type="text" :value="value" />`
+            methods: {
+                updateParentText(event) {
+                    console.log(event.target.value);
+                    this.$emit("updateText", event.target.value);
+                }
+            },
+            template: `
+                <input
+                    type="text"
+                    :value="value"
+                    @input="updateParentText"
+                />`
         });
         
         const vm = app.mount("#app");
