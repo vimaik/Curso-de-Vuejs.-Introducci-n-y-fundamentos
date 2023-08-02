@@ -12,40 +12,15 @@
         const app = Vue.createApp({
             data() {
                 return {
-                    textoComponentePadre1:"Texto nativo del componente padre"
+                    text: "Hola Vue"
                 };
             },
-            provide() {
-                return {
-                    textoComponentePadre2: "Este texto es nativo del componente padre y proporcionado a todos sus sucesores mediante la directriz 'provide'. A su vez, en este ejemplo, es mostrado en su componente profundo (nieto) mediante la directriz 'inject'."
-                };
-            },
-            template: `
-                <div>{{ text }}</div>
-                <componenteHijo />
-            `
-        });
-
-        app.component("componenteHijo", {
-            template: `
-                <componenteNieto />
-            `
-        });
-
-        app.component("componenteNieto", {
-            data() {
-                return {
-                    textoComponenteNieto: "Este Texto es nativo del componente nieto"
-                };
-            },
-            inject: ["textoComponentePadre2"],
-            template: `
-                <div>{{ textoComponenteNieto }}</div>
-                <div>{{ textoComponentePadre2 }}</div>
-            `
+            template: `<div>{{ text }}</div>`
         });
         
         const vm = app.mount("#app");
+
+        console.log(vm);
     </script>
 </body>
 </html>
