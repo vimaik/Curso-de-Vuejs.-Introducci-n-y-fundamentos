@@ -12,7 +12,7 @@
         const app = Vue.createApp({
             data() {
                 return {
-                    items: ["Uno", "Dos", "Tres", "Cuatro"]
+                    items: ["Uno", "Dos", "Tres", "Cuatro", ,]
                 };
             },
             template:`
@@ -24,7 +24,10 @@
 
         app.component("v-li", {
             props: {
-                text: String
+                text: {
+                    type: String,
+                    default: "Texto vacío"
+                }
             },
             template: `<li>{{ text }}</li>`
         });
