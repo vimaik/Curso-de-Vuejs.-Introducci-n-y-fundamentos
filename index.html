@@ -15,8 +15,10 @@
                     textoComponentePadre1:"Texto nativo del componente padre"
                 };
             },
-            provide: {
-                textoComponentePadre2:"Este texto es nativo del componente padre y proporcionado a todos sus sucesores mediante la directriz 'provide'. A su vez, en este ejemplo, es mostrado en su componente profundo (nieto) mediante la directriz 'inject'."
+            provide() {
+                return {
+                    textoComponentePadre2: "Este texto es nativo del componente padre y proporcionado a todos sus sucesores mediante la directriz 'provide'. A su vez, en este ejemplo, es mostrado en su componente profundo (nieto) mediante la directriz 'inject'."
+                };
             },
             template: `
                 <div>{{ text }}</div>
